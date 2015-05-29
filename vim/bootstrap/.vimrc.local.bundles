@@ -7,12 +7,12 @@ NeoBundle 'matchit.zip'                    " extended % matching for HTML, LaTeX
 NeoBundle 'rking/ag.vim'                   " Vim plugin for the_silver_searcher, 'ag'
 
 " INTERFACE
-NeoBundle 'mhinz/vim-startify'             " A fancy start screen, shows MRU etc.
+"NeoBundle 'mhinz/vim-startify'             " A fancy start screen, shows MRU etc.
 NeoBundle 'sjl/gundo.vim'                  " Undo tree
 
 " COMPLETION
 NeoBundle 'Raimondi/delimitMate'           " Provides Sublime-Text like smart completion of braces, parens and such
-NeoBundle 'Valloric/YouCompleteMe'
+"NeoBundle 'Valloric/YouCompleteMe'
 " Snippets
 NeoBundle 'SirVer/ultisnips'               " Snippet engine
 NeoBundle 'honza/vim-snippets'
@@ -81,7 +81,6 @@ if isdirectory(expand("~/.vim/bundle/YouCompleteMe/"))
 endif
 
 " vim-airline {
-unlet g:airline_theme
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
