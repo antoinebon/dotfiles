@@ -1,0 +1,27 @@
+
+NeoBundle 'tpope/vim-repeat'               " repeat.vim: enable repeating supported plugin maps with '.'
+NeoBundle 'terryma/vim-multiple-cursors'   " True Sublime Text style multiple selections for Vim
+NeoBundle 'matchit.zip'                    " extended % matching for HTML, LaTeX, and many other languages
+
+" SEARCH
+NeoBundle 'rking/ag.vim'                   " Vim plugin for the_silver_searcher, 'ag'
+
+" INTERFACE
+NeoBundle 'mhinz/vim-startify'             " A fancy start screen, shows MRU etc.
+NeoBundle 'sjl/gundo.vim'                  " Undo tree
+
+" COMPLETION
+NeoBundle 'Raimondi/delimitMate'           " Provides Sublime-Text like smart completion of braces, parens and such
+NeoBundle 'Valloric/YouCompleteMe'
+" Snippets
+NeoBundle 'SirVer/ultisnips'               " Snippet engine
+NeoBundle 'honza/vim-snippets'
+NeoBundle 'tpope/vim-surround'             " Surround is useful for adding surrounding tags to elements (especially html)
+
+" EDITING
+NeoBundle 'godlygeek/tabular'               " Align your = etc.
+NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundle 'osyo-manga/vim-over'             " :substitute preview
+
+
+
