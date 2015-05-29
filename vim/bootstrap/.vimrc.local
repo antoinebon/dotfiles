@@ -129,3 +129,8 @@ endif
 nnoremap <Leader>ag :execute 'Ag ' .  expand('<cword>')<Cr>>)
 vnoremap <Leader>ag y:Ag -Q '<C-R>"'<CR>
 
+
+"*****************************************************************************
+"" Plugin post-configurations
+"*****************************************************************************
+unlet g:NERDTreeWinSize

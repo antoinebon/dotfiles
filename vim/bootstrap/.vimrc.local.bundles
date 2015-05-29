@@ -33,7 +33,7 @@ NeoBundle 'Shougo/vimproc.vim', {
 \ }
 
 "*****************************************************************************
-"" Plugins configurations
+"" Plugins pre-configurations
 "*****************************************************************************
 " YouCompleteMe {
 if isdirectory(expand("~/.vim/bundle/YouCompleteMe/"))
