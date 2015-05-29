@@ -35,26 +35,6 @@ NeoBundle 'Shougo/vimproc.vim', {
 "*****************************************************************************
 "" Plugins configurations
 "*****************************************************************************
-" Tabularize {
-if isdirectory(expand("~/.vim/bundle/tabular"))
-    nmap <Leader>a& :Tabularize /&<CR>
-    vmap <Leader>a& :Tabularize /&<CR>
-    nmap <Leader>a= :Tabularize /=<CR>
-    vmap <Leader>a= :Tabularize /=<CR>
-    nmap <Leader>a=> :Tabularize /=><CR>
-    vmap <Leader>a=> :Tabularize /=><CR>
-    nmap <Leader>a: :Tabularize /:<CR>
-    vmap <Leader>a: :Tabularize /:<CR>
-    nmap <Leader>a:: :Tabularize /:\zs<CR>
-    vmap <Leader>a:: :Tabularize /:\zs<CR>
-    nmap <Leader>a, :Tabularize /,<CR>
-    vmap <Leader>a, :Tabularize /,<CR>
-    nmap <Leader>a,, :Tabularize /,\zs<CR>
-    vmap <Leader>a,, :Tabularize /,\zs<CR>
-    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-endif
-
 " YouCompleteMe {
 if isdirectory(expand("~/.vim/bundle/YouCompleteMe/"))
     " enable completion from tags
@@ -94,16 +74,9 @@ endif
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" UndoTree {
-if isdirectory(expand("~/.vim/bundle/gundo.vim/"))
-    nnoremap <Leader>u :GundoToggle<CR>
-endif
-
 " Ag {
 let g:agprg = 'ag --nogroup --nocolor --column --smart-case'
 "let g:ag_highlight = 1
-nnoremap <Leader>ag :execute 'Ag ' .  expand('<cword>')<Cr>>)
-vnoremap <Leader>ag y:Ag -Q '<C-R>"'<CR>
 
 " vdebug {
 let g:vdebug_options= {

@@ -48,8 +48,8 @@ set tabstop=4                                   " replace <TAB> w/4 spaces
 function! DeleteMultipleEmptyLines()
     g/^\_$\n\_^$/d
 endfunction
-
 nnoremap <leader>ld :call DeleteMultipleEmptyLines()<CR>
+
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
@@ -99,4 +99,33 @@ nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=jso
 
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+" Tabularize {
+if isdirectory(expand("~/.vim/bundle/tabular"))
+    nmap <Leader>a& :Tabularize /&<CR>
+    vmap <Leader>a& :Tabularize /&<CR>
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a=> :Tabularize /=><CR>
+    vmap <Leader>a=> :Tabularize /=><CR>
+    nmap <Leader>a: :Tabularize /:<CR>
+    vmap <Leader>a: :Tabularize /:<CR>
+    nmap <Leader>a:: :Tabularize /:\zs<CR>
+    vmap <Leader>a:: :Tabularize /:\zs<CR>
+    nmap <Leader>a, :Tabularize /,<CR>
+    vmap <Leader>a, :Tabularize /,<CR>
+    nmap <Leader>a,, :Tabularize /,\zs<CR>
+    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+endif
+
+" UndoTree {
+if isdirectory(expand("~/.vim/bundle/gundo.vim/"))
+    nnoremap <Leader>u :GundoToggle<CR>
+endif
+
+" Ag {
+nnoremap <Leader>ag :execute 'Ag ' .  expand('<cword>')<Cr>>)
+vnoremap <Leader>ag y:Ag -Q '<C-R>"'<CR>
 
