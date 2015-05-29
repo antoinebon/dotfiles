@@ -1,11 +1,25 @@
-
+set pastetoggle=<F1>                            " Toggle pastemode, doesn't indent
+set hidden                                      " buffer change, more undo
 set history=1000                                " default 20
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.  " Highlight problematic whitespace
+set cursorline                              " hilight cursor line
+set scrolloff=3                             " lines above/below cursor
+set showcmd                                 " show cmds being typed
+set title                                   " window title
+set wildmenu                                " better auto complete
+set wildmode=list:longest,full              " bash-like auto complete
+set shortmess+=I                                " disable startup message
+set splitbelow                                  " splits go below w/focus
+set splitright                                  " vsplits go right w/focus
 " Folding
 set foldcolumn=0                            " hide folding column
 set foldmethod=indent                       " folds using indent
 set foldnestmax=10                          " max 10 nested folds
 set foldlevelstart=99                       " folds open by default
+" Files
+set noautowrite                                 " never autowrite
+set confirm                                     " confirm changed files
+set nobackup                                    " disable backups
 " Persistent undo. Requires Vim 7.3
 if has('persistent_undo') && exists("&undodir")
     set undodir=$HOME/.vim/undo/            " where to store undofiles
@@ -14,10 +28,31 @@ if has('persistent_undo') && exists("&undodir")
     set undoreload=10000                    " buffer stored undos
 endif
 " Text formatting
-"set autoindent                                  " preserve indentation
-set formatoptions+=j " Take comment leaders into account when joining lines, :h fo-table
+set autoindent                                  " preserve indentation
+set backspace=indent,eol,start                  " smart backspace
+set cinkeys-=0#                                 " don't force # indentation
+set expandtab                                   " no real tabs
+set ignorecase                                  " by default ignore case
+set nrformats+=alpha                            " incr/decr letters C-a/-x
+set shiftround                                  " be clever with tabs
+set shiftwidth=4                                " default 8
+set smartcase                                   " sensitive with uppercase
+set smarttab                                    " tab to 0,4,8 etc.
+set softtabstop=4                               " "tab" feels like <tab>
+set tabstop=4                                   " replace <TAB> w/4 spaces
 
-" KEYBINDINGS
+"*****************************************************************************
+"" Functions
+"*****************************************************************************
+" Remove multiple empty lines
+function! DeleteMultipleEmptyLines()
+    g/^\_$\n\_^$/d
+endfunction
+
+nnoremap <leader>ld :call DeleteMultipleEmptyLines()<CR>
+"*****************************************************************************
+"" Mappings
+"*****************************************************************************
 " Let's make escape better, together.
 inoremap jk <Esc>
 inoremap JK <Esc>
@@ -29,4 +64,39 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" Buffers, preferred over tabs now with bufferline.
+nnoremap gn :bnext<CR>
+nnoremap gN :bprevious<CR>
+nnoremap gd :bdelete<CR>
+nnoremap gf <C-^>
+
+" Allow using the repeat operator with a visual selection (!)
+" http://stackoverflow.com/a/8064607/127816
+vnoremap . :normal .<CR>
+
+" Fold levels
+nmap <leader>f0 :set foldlevel=0<CR>
+nmap <leader>f1 :set foldlevel=1<CR>
+nmap <leader>f2 :set foldlevel=2<CR>
+nmap <leader>f3 :set foldlevel=3<CR>
+nmap <leader>f4 :set foldlevel=4<CR>
+nmap <leader>f5 :set foldlevel=5<CR>
+nmap <leader>f6 :set foldlevel=6<CR>
+nmap <leader>f7 :set foldlevel=7<CR>
+nmap <leader>f8 :set foldlevel=8<CR>
+nmap <leader>f9 :set foldlevel=9<CR>
+
+" Clear search
+noremap <silent><leader>/ :nohls<CR>
+" Paste in new line
+nmap <leader>p o<ESC>p
+
+" Format a json file with Python's built in json.tool.
+" from https://github.com/spf13/spf13-vim/blob/3.0/.vimrc#L390
+nnoremap <leader>jt <Esc>:%!underscore print<CR><Esc>:set filetype=json<CR>
+nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=json<CR>
+
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 

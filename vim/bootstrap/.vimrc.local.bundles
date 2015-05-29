@@ -20,8 +20,99 @@ NeoBundle 'tpope/vim-surround'             " Surround is useful for adding surro
 
 " EDITING
 NeoBundle 'godlygeek/tabular'               " Align your = etc.
-NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'osyo-manga/vim-over'             " :substitute preview
+
+"*****************************************************************************
+"" Plugins configurations
+"*****************************************************************************
+" Tabularize {
+if isdirectory(expand("~/.vim/bundle/tabular"))
+    nmap <Leader>a& :Tabularize /&<CR>
+    vmap <Leader>a& :Tabularize /&<CR>
+    nmap <Leader>a= :Tabularize /=<CR>
+    vmap <Leader>a= :Tabularize /=<CR>
+    nmap <Leader>a=> :Tabularize /=><CR>
+    vmap <Leader>a=> :Tabularize /=><CR>
+    nmap <Leader>a: :Tabularize /:<CR>
+    vmap <Leader>a: :Tabularize /:<CR>
+    nmap <Leader>a:: :Tabularize /:\zs<CR>
+    vmap <Leader>a:: :Tabularize /:\zs<CR>
+    nmap <Leader>a, :Tabularize /,<CR>
+    vmap <Leader>a, :Tabularize /,<CR>
+    nmap <Leader>a,, :Tabularize /,\zs<CR>
+    vmap <Leader>a,, :Tabularize /,\zs<CR>
+    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+endif
+
+" YouCompleteMe {
+if isdirectory(expand("~/.vim/bundle/YouCompleteMe/"))
+    " enable completion from tags
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_seed_identifiers_with_syntax        = 1 " completion for language keyword
+    let g:ycm_complete_in_comments                = 0 " Completion in comments
+    let g:ycm_complete_in_strings                 = 1 " Completion in string
+    let g:ycm_min_num_identifier_candidate_chars  = 2
+    let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+    " remap Ultisnips for compatibility for YCM
+    let g:UltiSnipsExpandTrigger = '<C-j>'
+    let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+    let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+    if has('conceal')
+        set conceallevel=2 concealcursor=i
+    endif
+
+    " Disable the neosnippet preview candidate window
+    " When enabled, there can be too much visual noise
+    " especially when splits are used.
+    set completeopt-=preview
+
+endif
+
+" vim-airline {
+unlet g:airline_theme
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+" UndoTree {
+if isdirectory(expand("~/.vim/bundle/gundo.vim/"))
+    nnoremap <Leader>u :GundoToggle<CR>
+endif
+
+" Ag {
+let g:agprg = 'ag --nogroup --nocolor --column --smart-case'
+"let g:ag_highlight = 1
+nnoremap <Leader>ag :execute 'Ag ' .  expand('<cword>')<Cr>>)
+vnoremap <Leader>ag y:Ag -Q '<C-R>"'<CR>
+
+" vdebug {
+let g:vdebug_options= {
+    \    "port" : 9001,
+    \    "server" : '192.168.98.10',
+    \    "timeout" : 20,
+    \    "on_close" : 'detach',
+    \    "break_on_open" : 1,
+    \    "ide_key" : '',
+    \    "path_maps" : {"/usr/share/isis-dev": "/home/dev/isis"},
+    \    "debug_window_level" : 0,
+    \    "debug_file_level" : 0,
+    \    "debug_file" : "",
+    \    "watch_window_style" : 'expanded',
+    \    "marker_default" : '⬦',
+    \    "marker_closed_tree" : '▸',
+    \    "marker_open_tree" : '▾'
+    \}
 
 
 
