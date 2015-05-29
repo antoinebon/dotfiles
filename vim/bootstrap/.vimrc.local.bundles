@@ -1,3 +1,4 @@
+call system("mkdir -p $HOME/.vim/{undo,tags}")
 
 NeoBundle 'tpope/vim-repeat'               " repeat.vim: enable repeating supported plugin maps with '.'
 NeoBundle 'terryma/vim-multiple-cursors'   " True Sublime Text style multiple selections for Vim
