@@ -68,6 +68,7 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+
 if v:version > 702
 	NeoBundle 'Shougo/vimshell.vim'
 endif

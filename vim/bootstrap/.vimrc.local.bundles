@@ -22,6 +22,16 @@ NeoBundle 'tpope/vim-surround'             " Surround is useful for adding surro
 NeoBundle 'godlygeek/tabular'               " Align your = etc.
 NeoBundle 'osyo-manga/vim-over'             " :substitute preview
 
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
+
 "*****************************************************************************
 "" Plugins configurations
 "*****************************************************************************
