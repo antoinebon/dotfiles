@@ -100,6 +100,62 @@ nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=jso
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
+
+"*****************************************************************************
+"" Plugin post-configurations
+"*****************************************************************************
+" ctrlp {
+if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
+    let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_regexp = 1
+
+    if executable('ag')
+        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        let g:ctrlp_user_command =
+                    \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+    endif
+
+    " Mappings
+    nmap <leader>l :CtrlP
+    nmap <leader>lw :CtrlP<CR><C-\>w
+    vmap <leader>lw :CtrlP<CR><C-\>v
+
+    if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
+        " CtrlP extensions
+        let g:ctrlp_extensions = ['funky']
+
+        " funky
+        nnoremap <Leader>lf :CtrlPFunky<Cr>
+        " narrow the list down with a word under cursor
+        nnoremap <Leader>lfw :execute 'CtrlPFunky ' .  expand('<cword>')<Cr>>)
+    endif
+endif
+"}
+
+if isdirectory(expand("~/.vim/bundle/YouCompleteMee/"))
+    " enable completion from tags
+    let g:ycm_collect_identifiers_from_tags_files = 1
+    let g:ycm_seed_identifiers_with_syntax        = 1 " completion for language keyword
+    let g:ycm_complete_in_comments                = 0 " Completion in comments
+    let g:ycm_complete_in_strings                 = 1 " Completion in string
+    let g:ycm_min_num_identifier_candidate_chars  = 2
+    let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
+    " Disable the neosnippet preview candidate window
+    " When enabled, there can be too much visual noise
+    " especially when splits are used.
+    set completeopt-=preview
+endif
+
+" remap Ultisnips for compatibility for YCM
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+" Ag {
+let g:agprg = 'ag --nogroup --nocolor --column --smart-case'
+"let g:ag_highlight = 1
+
 " Tabularize {
 if isdirectory(expand("~/.vim/bundle/tabular"))
     nmap <Leader>a& :Tabularize /&<CR>
@@ -130,7 +186,37 @@ nnoremap <Leader>ag :execute 'Ag ' .  expand('<cword>')<Cr>>)
 vnoremap <Leader>ag y:Ag -Q '<C-R>"'<CR>
 
 
-"*****************************************************************************
-"" Plugin post-configurations
-"*****************************************************************************
+" vdebug {
+let g:vdebug_options= {
+            \    "port" : 9001,
+            \    "server" : '192.168.98.10',
+            \    "timeout" : 20,
+            \    "on_close" : 'detach',
+            \    "break_on_open" : 1,
+            \    "ide_key" : '',
+            \    "path_maps" : {"/usr/share/isis-dev": "/home/dev/isis"},
+            \    "debug_window_level" : 0,
+            \    "debug_file_level" : 0,
+            \    "debug_file" : "",
+            \    "watch_window_style" : 'expanded',
+            \    "marker_default" : '⬦',
+            \    "marker_closed_tree" : '▸',
+            \    "marker_open_tree" : '▾'
+            \}
+
 unlet g:NERDTreeWinSize
+
+"*****************************************************************************
+"" Filetype specific
+"*****************************************************************************
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" enable autocomplete of html tags
+autocmd FileType html,xhtml,xml,phtml source ~/.vim/bundle/HTML-AutoCloseTag/ftplugin/html_autoclosetag.vim
