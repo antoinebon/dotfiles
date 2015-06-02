@@ -204,7 +204,9 @@ let g:vdebug_options= {
             \    "marker_open_tree" : '▾'
             \}
 
+" Nerd Tree {
 unlet g:NERDTreeWinSize
+let NERDTreeQuitOnOpen=1
 
 "*****************************************************************************
 "" Filetype specific
