@@ -2,7 +2,7 @@ set pastetoggle=<F1>                            " Toggle pastemode, doesn't inde
 set hidden                                      " buffer change, more undo
 set history=1000                                " default 20
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:.  " Highlight problematic whitespace
-set cursorline                              " hilight cursor line
+" set cursorline                              " hilight cursor line
 set scrolloff=3                             " lines above/below cursor
 set showcmd                                 " show cmds being typed
 set title                                   " window title
@@ -53,6 +53,10 @@ nnoremap <leader>ld :call DeleteMultipleEmptyLines()<CR>
 "*****************************************************************************
 "" Mappings
 "*****************************************************************************
+" Treat wrapped lines as normal lines
+nnoremap j gj
+nnoremap k gk
+
 " Let's make escape better, together.
 inoremap jk <Esc>
 inoremap JK <Esc>
@@ -100,6 +104,11 @@ nnoremap <leader>jts <Esc>:%!underscore print --strict<CR><Esc>:set filetype=jso
 " Find merge conflict markers
 map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
 
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+" Yank(copy) to system clipboard
+noremap <leader>y "+y
 
 "*****************************************************************************
 "" Plugin post-configurations
