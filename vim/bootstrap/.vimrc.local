@@ -110,6 +110,9 @@ cmap w!! w !sudo tee % >/dev/null
 " Yank(copy) to system clipboard
 noremap <leader>y "+y
 
+" Removed undesired bindings
+unmap P
+
 "*****************************************************************************
 "" Plugin post-configurations
 "*****************************************************************************
