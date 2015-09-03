@@ -1,3 +1,4 @@
+call system("mkdir -p $HOME/.nvim/{undo,tags}")
 
 NeoBundle 'tpope/vim-repeat'               " repeat.vim: enable repeating supported plugin maps with '.'
 NeoBundle 'terryma/vim-multiple-cursors'   " True Sublime Text style multiple selections for Vim
@@ -7,7 +8,7 @@ NeoBundle 'matchit.zip'                    " extended % matching for HTML, LaTeX
 NeoBundle 'rking/ag.vim'                   " Vim plugin for the_silver_searcher, 'ag'
 
 " INTERFACE
-NeoBundle 'mhinz/vim-startify'             " A fancy start screen, shows MRU etc.
+"NeoBundle 'mhinz/vim-startify'             " A fancy start screen, shows MRU etc.
 NeoBundle 'sjl/gundo.vim'                  " Undo tree
 
 " COMPLETION
@@ -20,8 +21,13 @@ NeoBundle 'tpope/vim-surround'             " Surround is useful for adding surro
 
 " EDITING
 NeoBundle 'godlygeek/tabular'               " Align your = etc.
-NeoBundle 'nathanaelkane/vim-indent-guides'
-NeoBundle 'osyo-manga/vim-over'             " :substitute preview
+"NeoBundle 'osyo-manga/vim-over'             " :substitute preview
 
-
+"*****************************************************************************
+"" Plugins pre-configurations
+"*****************************************************************************
+" YouCompleteMe {
+" vim-airline {
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
 

@@ -11,6 +11,9 @@ endif
 
 let neobundle_readme=expand('~/.nvim/bundle/neobundle.vim/README.md')
 
+let g:vim_bootstrap_langs = "javascript,ruby,haskell,lisp,elixir,python,c,php,html,lua,perl,go,erlang"
+let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+
 if !filereadable(neobundle_readme)
   echo "Installing NeoBundle..."
   echo ""
@@ -20,31 +23,35 @@ if !filereadable(neobundle_readme)
 
   " Run shell script if exist on custom select language
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/perl/perl.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/c/c.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/erlang/erlang.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/lua/lua.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/lisp/lisp.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/javascript/javascript.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/html/html.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/ocaml/ocaml.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/python/python.sh | bash -s stable
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/haskell/haskell.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/go/go.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/php/php.sh | bash -s stable
   
-  silent !\curl -sSL https://raw.githubusercontent.com/avelino/vim-bootstrap/master/vim_template/langs/ruby/ruby.sh | bash -s stable
+  
+  
+  
+  
+  
+  
   
 endif
 
@@ -76,26 +83,31 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
-if v:version > 702
-	NeoBundle 'Shougo/vimshell.vim'
-endif
 
 "" Vim-Session
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'xolox/vim-session'
 
 "" Snippets
-NeoBundle 'SirVer/ultisnips'
+if v:version >= 704
+  "NeoBundle 'SirVer/ultisnips'
+endif
+
 NeoBundle 'honza/vim-snippets'
 
 "" Color
 NeoBundle 'tomasr/molokai'
 
 "" Vim-Bootstrap Updater
-NeoBundle 'sherzberg/vim-bootstrap-updater'
+"NeoBundle 'sherzberg/vim-bootstrap-updater'
 
-let g:vim_bootstrap_langs = "javascript,ruby,haskell,lisp,python,c,php,html,lua,ocaml,perl,go,erlang"
-let g:vim_bootstrap_editor = "nvim"				" nvim or vim
+if v:version >= 703
+  NeoBundle 'Shougo/vimshell.vim'
+endif
+
+if v:version >= 704
+  NeoBundle 'FelikZ/ctrlp-py-matcher'
+endif
 
 "" Custom bundles
 
@@ -111,6 +123,9 @@ NeoBundle "jimenezrick/vimerl"
 
 NeoBundle "scrooloose/syntastic"
 NeoBundle "majutsushi/tagbar"
+
+NeoBundle 'xolox/vim-lua-ftplugin'
+NeoBundle 'xolox/vim-lua-inspect'
 
 
 "" Lisp Bundle
@@ -144,6 +159,10 @@ NeoBundle "dag/vim2hs"
 NeoBundle "pbrisbin/vim-syntax-shakespeare"
 
 
+NeoBundle 'elixir-lang/vim-elixir'
+NeoBundle 'carlosgaldino/elixir-snippets'
+
+
 "" Go Lang Bundle
 NeoBundle "majutsushi/tagbar"
 NeoBundle "fatih/vim-go"
@@ -159,6 +178,7 @@ NeoBundle "tpope/vim-rake"
 NeoBundle "tpope/vim-projectionist"
 NeoBundle "thoughtbot/vim-rspec"
 NeoBundle "majutsushi/tagbar"
+NeoBundle "ecomba/vim-ruby-refactoring"
 
 
 
@@ -238,7 +258,7 @@ endif
 
 set mousemodel=popup
 set t_Co=256
-set nocursorline
+set cursorline
 set guioptions=egmrti
 set gfn=Monospace\ 10
 
@@ -267,6 +287,12 @@ endif
 set gcr=a:blinkon0
 set scrolloff=3
 
+"" Map cursor for insert mode
+if &term =~ "xterm\\|rxvt"
+  let &t_SI .= "\<Esc>[5 q"
+  let &t_EI .= "\<Esc>[0 q"
+endif
+
 "" Status bar
 set laststatus=2
 
@@ -291,12 +317,26 @@ let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 
 if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 if !exists('g:airline_powerline_fonts')
   let g:airline#extensions#tabline#left_sep = ' '
   let g:airline#extensions#tabline#left_alt_sep = '|'
+  let g:airline_left_sep          = '▶'
+  let g:airline_left_alt_sep      = '»'
+  let g:airline_right_sep         = '◀'
+  let g:airline_right_alt_sep     = '«'
+  let g:airline#extensions#branch#prefix     = '⤴' "➔, ➥, ⎇
+  let g:airline#extensions#readonly#symbol   = '⊘'
+  let g:airline#extensions#linecolumn#prefix = '¶'
+  let g:airline#extensions#paste#symbol      = 'ρ'
+  let g:airline_symbols.linenr    = '␊'
+  let g:airline_symbols.branch    = '⎇'
+  let g:airline_symbols.paste     = 'ρ'
+  let g:airline_symbols.paste     = 'Þ'
+  let g:airline_symbols.paste     = '∥'
+  let g:airline_symbols.whitespace = 'Ξ'
 else
   let g:airline#extensions#tabline#left_sep = ''
   let g:airline#extensions#tabline#left_alt_sep = ''
@@ -457,6 +497,9 @@ let g:syntastic_auto_loc_list=1
 let g:syntastic_aggregate_errors = 1
 
 
+" Disable visualbell
+set visualbell t_vb=
+
 "" Copy/Paste/Cut
 if has('unnamedplus')
   set clipboard=unnamed,unnamedplus
@@ -484,9 +527,19 @@ noremap <leader>c :bd<CR>
 "" Clean search (highlight)
 nnoremap <silent> <leader><space> :noh<cr>
 
+"" Switching windows
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
 vmap > >gv
+
+"" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 
 "" Open current line on GitHub
 noremap ,o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
@@ -514,14 +567,6 @@ let g:tagbar_autofocus = 1
 let g:javascript_enable_domhtmlcss = 1
 
 
-
-
-" Add Merlin to rtp
-let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
-execute "set rtp+=" . g:opamshare . "/merlin/vim"
-
-" Set Merlin as Syntastic checker for OCaml
-let g:syntastic_ocaml_checkers = ['merlin']
 
 
 " vim-python
@@ -565,6 +610,11 @@ autocmd Filetype haskell setlocal omnifunc=necoghc#omnifunc
 nmap <silent> <F4> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
+
+" Tagbar
+nmap <silent> <F4> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
+
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
     \ 'kinds'     : [  'p:package', 'i:imports:1', 'c:constants', 'v:variables',
@@ -577,6 +627,22 @@ let g:tagbar_type_go = {
     \ 'ctagsargs' : '-sort -silent'
     \ }
 
+" vim-go
+augroup FileType go
+  au!
+  au FileType go nmap gd <Plug>(go-def)
+  au FileType go nmap <Leader>dd <Plug>(go-def-vertical)
+
+  au FileType go nmap <Leader>dv <Plug>(go-doc-vertical)
+  au FileType go nmap <Leader>db <Plug>(go-doc-browser)
+
+  au FileType go nmap <Leader>gi <Plug>(go-info)
+
+  au FileType go nmap <leader>gr <Plug>(go-run)
+  au FileType go nmap <leader>rb <Plug>(go-build)
+  au FileType go nmap <leader>gt <Plug>(go-test)
+augroup END
+
 
 
 
@@ -587,7 +653,7 @@ let g:rubycomplete_rails = 1
 augroup vimrc-ruby
   autocmd!
   autocmd BufNewFile,BufRead *.rb,*.rbw,*.gemspec setlocal filetype=ruby
-  autocmd Filetype ruby setlocal tabstop=2 softtabstop=2 shiftwidth=2
+  autocmd FileType ruby set tabstop=2|set shiftwidth=2|set expandtab
 augroup END
 
 " Tagbar
@@ -604,6 +670,22 @@ let g:tagbar_type_ruby = {
         \ 'F:singleton methods'
     \ ]
 \ }
+" RSpec.vim mappings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>
+
+" Ruby refactory
+nnoremap <leader>rap  :RAddParameter<cr>
+nnoremap <leader>rcpc :RConvertPostConditional<cr>
+nnoremap <leader>rel  :RExtractLet<cr>
+vnoremap <leader>rec  :RExtractConstant<cr>
+vnoremap <leader>relv :RExtractLocalVariable<cr>
+nnoremap <leader>rit  :RInlineTemp<cr>
+vnoremap <leader>rrlv :RRenameLocalVariable<cr>
+vnoremap <leader>rriv :RRenameInstanceVariable<cr>
+vnoremap <leader>rem  :RExtractMethod<cr>
 
 
 
