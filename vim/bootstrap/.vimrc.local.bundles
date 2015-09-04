@@ -23,6 +23,9 @@ NeoBundle 'tpope/vim-surround'             " Surround is useful for adding surro
 NeoBundle 'godlygeek/tabular'               " Align your = etc.
 "NeoBundle 'osyo-manga/vim-over'             " :substitute preview
 
+" TMUX
+NeoBundle 'christoomey/vim-tmux-navigator'
+
 "*****************************************************************************
 "" Plugins pre-configurations
 "*****************************************************************************
