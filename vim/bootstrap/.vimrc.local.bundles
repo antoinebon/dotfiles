@@ -26,6 +26,9 @@ NeoBundle 'godlygeek/tabular'               " Align your = etc.
 " TMUX
 NeoBundle 'christoomey/vim-tmux-navigator'
 
+" SYNTAX
+NeoBundle 'vale1410/vim-minizinc'
+
 "*****************************************************************************
 "" Plugins pre-configurations
 "*****************************************************************************

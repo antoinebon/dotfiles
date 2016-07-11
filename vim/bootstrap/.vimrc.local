@@ -40,6 +40,7 @@ set smartcase                                   " sensitive with uppercase
 set smarttab                                    " tab to 0,4,8 etc.
 set softtabstop=4                               " "tab" feels like <tab>
 set tabstop=4                                   " replace <TAB> w/4 spaces
+set conceallevel=0
 
 "*****************************************************************************
 "" Functions
@@ -109,9 +110,6 @@ cmap w!! w !sudo tee % >/dev/null
 
 " Yank(copy) to system clipboard
 noremap <leader>y "+y
-
-" Removed undesired bindings
-unmap P
 
 "*****************************************************************************
 "" Plugin post-configurations
