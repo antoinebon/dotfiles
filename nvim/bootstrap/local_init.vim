@@ -41,4 +41,7 @@ noremap <silent><leader>/ :nohls<CR>
 " Paste in new line
 nmap <leader>p o<ESC>p
 
-
+" remap Ultisnips for compatibility for YCM
+let g:UltiSnipsExpandTrigger = '<C-b>'
+let g:UltiSnipsJumpForwardTrigger = '<C-b>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-e>'
