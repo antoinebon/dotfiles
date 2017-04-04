@@ -1,3 +1,35 @@
+set pastetoggle=<F1>                            " Toggle pastemode, doesn't indent
+set hidden                                      " buffer change, more undo
+set history=1000                                " default 20
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:.  " Highlight problematic whitespace
+" set cursorline                              " hilight cursor line
+set scrolloff=3                             " lines above/below cursor
+set showcmd                                 " show cmds being typed
+set title                                   " window title
+set wildmenu                                " better auto complete
+set wildmode=list:longest,full              " bash-like auto complete
+set shortmess+=I                                " disable startup message
+set splitbelow                                  " splits go below w/focus
+set splitright                                  " vsplits go right w/focus
+" Folding
+set foldcolumn=0                            " hide folding column
+set foldmethod=indent                       " folds using indent
+set foldnestmax=10                          " max 10 nested folds
+set foldlevelstart=99                       " folds open by default
+" Files
+set noautowrite                                 " never autowrite
+set confirm                                     " confirm changed files
+set nobackup                                    " disable backups
+set mouse=                                      " disable mouse
+
+" Persistent undo. Requires Vim 7.3
+if has('persistent_undo') && exists("&undodir")
+    set undodir=$HOME/.vim/undo/            " where to store undofiles
+    set undofile                            " enable undofile
+    set undolevels=500                      " max undos stored
+    set undoreload=10000                    " buffer stored undos
+endif
+
 " Treat wrapped lines as normal lines
 nnoremap j gj
 nnoremap k gk
