@@ -1,0 +1,5 @@
+Plug 'Valloric/YouCompleteMe'
+Plug 'tpope/vim-surround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'klen/python-mode'
+Plug 'sjl/gundo.vim'
