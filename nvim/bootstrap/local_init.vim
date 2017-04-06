@@ -40,12 +40,6 @@ inoremap JK <Esc>
 inoremap Jk <Esc>
 inoremap jK <Esc>
 
-" shortcuts for windows
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-
 " Buffers, preferred over tabs now with bufferline.
 nnoremap gn :bnext<CR>
 nnoremap gN :bprevious<CR>
@@ -73,7 +67,49 @@ noremap <silent><leader>/ :nohls<CR>
 " Paste in new line
 nmap <leader>p o<ESC>p
 
+" For when you forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+" Yank(copy) to system clipboard
+noremap <leader>y "+y
+
 " remap Ultisnips for compatibility for YCM
 let g:UltiSnipsExpandTrigger = '<C-b>'
 let g:UltiSnipsJumpForwardTrigger = '<C-b>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-e>'
+
+
+" UndoTree
+nnoremap <Leader>u :GundoToggle<CR>
+
+" Nerd Tree
+unlet g:NERDTreeWinSize
+let NERDTreeQuitOnOpen=1
+
+" ctrlp
+if isdirectory(expand("~/.config/nvim/plugged/ctrlp.vim/"))
+    let g:ctrlp_working_path_mode = 'rw'
+    let g:ctrlp_regexp = 1
+
+    if executable('ag')
+        " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+        let g:ctrlp_user_command =
+                    \ 'ag %s --files-with-matches -g "" --ignore "\.git$\|\.hg$\|\.svn$"'
+    endif
+
+    " Mappings
+    nmap <leader>l :CtrlP<CR>
+    nmap <leader>lw :CtrlP<CR><C-\>w
+    vmap <leader>lw :CtrlP<CR><C-\>v
+
+    if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
+        " CtrlP extensions
+        let g:ctrlp_extensions = ['funky']
+
+        " funky
+        nnoremap <Leader>lf :CtrlPFunky<Cr>
+        " narrow the list down with a word under cursor
+        nnoremap <Leader>lfw :execute 'CtrlPFunky ' .  expand('<cword>')<Cr>>)
+    endif
+endif
+"}
