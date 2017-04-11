@@ -112,4 +112,8 @@ if isdirectory(expand("~/.config/nvim/plugged/ctrlp.vim/"))
         nnoremap <Leader>lfw :execute 'CtrlPFunky ' .  expand('<cword>')<Cr>>)
     endif
 endif
-"}
+
+augroup vimrc-python
+  autocmd!
+  autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+augroup END
