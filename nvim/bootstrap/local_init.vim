@@ -113,7 +113,13 @@ if isdirectory(expand("~/.config/nvim/plugged/ctrlp.vim/"))
     endif
 endif
 
-augroup vimrc-python
-  autocmd!
-  autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
-augroup END
+" augroup vimrc-python
+"   autocmd!
+"   autocmd FileType python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+" augroup END
+"
+" Pymode
+let g:pymode_rope_regenerate_on_write = 0
+
+" Tagbar
+nnoremap <silent> <F9> :TagbarToggle<CR> 
