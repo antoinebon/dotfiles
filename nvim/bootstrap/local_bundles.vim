@@ -13,4 +13,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 
 " SYNTAX
-Plug 'klen/python-mode'
+" Plug 'python-mode/python-mode', {'branch': 'develop'}
+Plug 'nvie/vim-flake8'
+
+" COLORS
+Plug 'chriskempson/vim-tomorrow-theme'

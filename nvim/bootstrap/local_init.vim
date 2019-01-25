@@ -30,6 +30,8 @@ if has('persistent_undo') && exists("&undodir")
     set undoreload=10000                    " buffer stored undos
 endif
 
+colorscheme Tomorrow-Night
+
 " Treat wrapped lines as normal lines
 nnoremap j gj
 nnoremap k gk
@@ -123,3 +125,16 @@ let g:pymode_rope_regenerate_on_write = 0
 
 " Tagbar
 nnoremap <silent> <F9> :TagbarToggle<CR> 
+
+" Airline
+let g:airline_theme='tomorrow'
+
+"python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
