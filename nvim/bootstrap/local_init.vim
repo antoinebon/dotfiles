@@ -32,6 +32,9 @@ endif
 
 colorscheme Tomorrow-Night
 
+" Ctrl-i non-recursive map to Tab
+nnoremap <c-i> <Tab>
+
 " Treat wrapped lines as normal lines
 nnoremap j gj
 nnoremap k gk
