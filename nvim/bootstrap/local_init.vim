@@ -22,6 +22,10 @@ set confirm                                     " confirm changed files
 set nobackup                                    " disable backups
 set mouse=                                      " disable mouse
 
+set tags=./tags;,tags$HOME
+set tags+=$HOME/site-packages/torch/tags
+set tags+=$HOME/site-packages/torchvision/tags
+
 " Persistent undo. Requires Vim 7.3
 if has('persistent_undo') && exists("&undodir")
     set undodir=$HOME/.vim/undo/            " where to store undofiles

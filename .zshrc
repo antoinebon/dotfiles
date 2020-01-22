@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/abon/.oh-my-zsh"
+export ZSH="/home/abon/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -116,8 +116,10 @@ export EDITOR=nvim
 
 alias vi=nvim
 setxkbmap fr
-export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/cuda-8.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:$HOME/bin
-export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/lib/cudnn-7.0/lib64:/usr/local/cuda-9.0:/usr/local/lib/cudnn-7.0
+# export PATH=/home/linuxbrew/.linuxbrew/bin:/usr/local/cuda-8.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:$HOME/bin
+# export LD_LIBRARY_PATH=/usr/local/cuda-9.0/lib64:/usr/local/lib/cudnn-7.0/lib64:/usr/local/cuda-9.0:/usr/local/lib/cudnn-7.0
+# export PATH=/home/abon/source/swift-tf-cuda/usr/bin:"${PATH}"
+export PATH=/home/abon/source/swift-tf-cpu/usr/bin:"${PATH}"
 export JAVA_HOME=/usr/bin/java
 export PYTHONPATH=/home/abon/source
 
